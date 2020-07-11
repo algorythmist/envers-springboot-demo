@@ -1,0 +1,6 @@
+- Add more complex object structure: Customer, OrderItem
+- README
+- Use flyway to create schema
+- populate user from security context
+- vertical queries
+- custom names for audit tables and properties
