@@ -7,25 +7,34 @@ import com.tecacet.demo.envers.audit.CustomRevision;
 import com.tecacet.demo.envers.audit.RevisionHistoryDao;
 import com.tecacet.demo.envers.domain.CustomerOrder;
 
+import org.aspectj.lang.annotation.After;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.history.Revision;
 import org.springframework.data.history.RevisionMetadata;
 import org.springframework.data.history.Revisions;
+import org.springframework.test.context.TestPropertySource;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
-class CustomerCustomerOrderRepositoryTest {
+class CustomerOrderRepositoryTest {
 
     @Autowired
     private CustomerOrderRepository customerOrderRepository;
 
     @Autowired
     private RevisionHistoryDao revisionHistoryDao;
+
+    @AfterEach
+    public void cleanupRevisionHistory() {
+        revisionHistoryDao.deleteAllRevisions("customer_order");
+    }
 
     @Test
     public void testCrudRevisions() {
@@ -59,5 +68,15 @@ class CustomerCustomerOrderRepositoryTest {
     }
 
 
+    @Test
+    public void testHorizontalQuery() {
+        CustomerOrder order1 = new CustomerOrder("order1", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
+        CustomerOrder order2 = new CustomerOrder("order2", BigDecimal.TEN, CustomerOrder.Status.PLACED);
+        CustomerOrder order3 = new CustomerOrder("order3", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
+        customerOrderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
+
+
+    }
 
 }

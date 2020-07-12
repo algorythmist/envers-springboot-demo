@@ -16,9 +16,9 @@ public interface RevisionHistoryDao {
      * intended for tests. There should be no business scenario where this is
      * allowed
      *
-     * @param type the entity type
+     * @param tableName the table name of the audited entity
      */
-    <T> void deleteAllRevisions(Class<T> type);
+    void deleteAllRevisions(String tableName);
 
     /**
      * Get all revisions for an entity of a specific id. The oldest revision is
