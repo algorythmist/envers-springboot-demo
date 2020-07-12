@@ -35,6 +35,7 @@ class CustomerOrderRepositoryTest {
 
     @AfterEach
     public void cleanupRevisionHistory() {
+        revisionHistoryDao.deleteAllRevisions("order_item");
         revisionHistoryDao.deleteAllRevisions("customer_order");
     }
 
@@ -44,7 +45,9 @@ class CustomerOrderRepositoryTest {
         customer.setUsername("customer");
         customerRepository.save(customer);
 
-        CustomerOrder order = new CustomerOrder(customer, "test", BigDecimal.TEN, CustomerOrder.Status.IN_PROGRESS);
+        CustomerOrder order = new CustomerOrder(customer, "order1", CustomerOrder.Status.IN_PROGRESS);
+        order.addItem("item1", BigDecimal.TEN, 2);
+
         customerOrderRepository.save(order);
         assertTrue(order.getId() > 0);
 
