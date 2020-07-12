@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.tecacet.demo.envers.audit.CustomRevision;
 import com.tecacet.demo.envers.audit.RevisionHistoryDao;
+import com.tecacet.demo.envers.domain.Customer;
 import com.tecacet.demo.envers.domain.CustomerOrder;
 
-import org.aspectj.lang.annotation.After;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.history.Revision;
 import org.springframework.data.history.RevisionMetadata;
 import org.springframework.data.history.Revisions;
-import org.springframework.test.context.TestPropertySource;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -24,6 +23,9 @@ import java.util.List;
 
 @SpringBootTest
 class CustomerOrderRepositoryTest {
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @Autowired
     private CustomerOrderRepository customerOrderRepository;
@@ -38,7 +40,11 @@ class CustomerOrderRepositoryTest {
 
     @Test
     public void testCrudRevisions() {
-        CustomerOrder order = new CustomerOrder("test", BigDecimal.TEN, CustomerOrder.Status.IN_PROGRESS);
+        Customer customer = new Customer();
+        customer.setUsername("customer");
+        customerRepository.save(customer);
+
+        CustomerOrder order = new CustomerOrder(customer, "test", BigDecimal.TEN, CustomerOrder.Status.IN_PROGRESS);
         customerOrderRepository.save(order);
         assertTrue(order.getId() > 0);
 
@@ -68,15 +74,13 @@ class CustomerOrderRepositoryTest {
     }
 
 
-    @Test
-    public void testHorizontalQuery() {
-        CustomerOrder order1 = new CustomerOrder("order1", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
-        CustomerOrder order2 = new CustomerOrder("order2", BigDecimal.TEN, CustomerOrder.Status.PLACED);
-        CustomerOrder order3 = new CustomerOrder("order3", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
-        customerOrderRepository.saveAll(Arrays.asList(order1, order2, order3));
-
-
-
-    }
+//    @Test
+//    public void testHorizontalQuery() {
+//        CustomerOrder order1 = new CustomerOrder(customer, "order1", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
+//        CustomerOrder order2 = new CustomerOrder("order2", BigDecimal.TEN, CustomerOrder.Status.PLACED);
+//        CustomerOrder order3 = new CustomerOrder("order3", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
+//        customerOrderRepository.saveAll(Arrays.asList(order1, order2, order3));
+//
+//    }
 
 }
