@@ -1,9 +1,7 @@
 package com.tecacet.demo.envers.domain;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
-import org.springframework.stereotype.Service;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

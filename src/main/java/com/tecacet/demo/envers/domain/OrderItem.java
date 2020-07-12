@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
@@ -35,6 +36,7 @@ public class OrderItem extends AbstractPersistable<Long> {
 
     @NotNull
     @Min(1)
+    @Column(name = "number")
     private int count;
 
     public BigDecimal getAmount() {
