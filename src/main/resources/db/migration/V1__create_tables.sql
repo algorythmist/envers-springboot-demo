@@ -1,11 +1,11 @@
-create table customer (
+CREATE TABLE customer (
     id INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(50),
     PRIMARY KEY (id)
 );
 
-create table customer_order (
+CREATE TABLE customer_order (
     id INT NOT NULL AUTO_INCREMENT,
     customer_id INT NOT NULL,
     description VARCHAR(255) NOT NULL,
@@ -15,7 +15,7 @@ create table customer_order (
     CONSTRAINT FK_order_customer_id FOREIGN KEY (customer_id) REFERENCES customer (id)
 );
 
-create table order_item(
+CREATE TABLE order_item(
     id INT NOT NULL AUTO_INCREMENT,
     order_id INT NOT NULL,
     item_identifier VARCHAR(255) NOT NULL,

@@ -25,7 +25,7 @@ public interface RevisionHistoryDao {
      * the first element in the list
      *
      * @param type the entity type
-     * @param id the entity id
+     * @param id   the entity id
      * @return all revisions
      */
     <T> List<T> getAllRevisionsForEntity(Class<T> type, long id);

@@ -1,14 +1,22 @@
 package com.tecacet.demo.envers.audit;
 
-import org.hibernate.envers.DefaultRevisionEntity;
 import org.hibernate.envers.RevisionEntity;
+import org.hibernate.envers.RevisionNumber;
+import org.hibernate.envers.RevisionTimestamp;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Custom mapping for Hibernate Envers revision table
@@ -18,11 +26,23 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 @Entity
+@Table(name = "revision_info")
 @RevisionEntity(CustomRevisionListener.class)
-public class CustomRevision extends DefaultRevisionEntity {
+public class CustomRevision {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @RevisionNumber
+    @Column(name = "revision_id")
+    private int id;
+
+    @RevisionTimestamp
+    @Column(name = "revision_timestamp")
+    private Date timestamp;
 
     private String username;
 
-    private LocalDateTime revisionTime;
-
+    public LocalDateTime getRevisionDateTime() {
+        return timestamp.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
 }

@@ -1,5 +1,4 @@
 - README
-- Use flyway to create schema
 - populate user from security context
 - vertical queries
-- custom names for audit tables and properties
+- Customer is immutable - add created timestamp

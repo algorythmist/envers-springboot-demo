@@ -18,7 +18,6 @@ import org.springframework.data.history.Revisions;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 @SpringBootTest
@@ -64,7 +63,8 @@ class CustomerOrderRepositoryTest {
         assertEquals(RevisionMetadata.RevisionType.UPDATE, revisionMetadata.getRevisionType());
         CustomRevision customRevision = revisionMetadata.getDelegate();
         assertEquals("authorized", customRevision.getUsername());
-        assertEquals(LocalDate.now(), customRevision.getRevisionTime().toLocalDate());
+        LocalDate date = customRevision.getRevisionDateTime().toLocalDate();
+        assertEquals(LocalDate.now(), date);
 
         Revisions<Integer, CustomerOrder> revisions = customerOrderRepository.findRevisions(found.getId());
         List<Revision<Integer, CustomerOrder>> revisionList = revisions.getContent();
@@ -77,13 +77,13 @@ class CustomerOrderRepositoryTest {
     }
 
 
-//    @Test
-//    public void testHorizontalQuery() {
-//        CustomerOrder order1 = new CustomerOrder(customer, "order1", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
-//        CustomerOrder order2 = new CustomerOrder("order2", BigDecimal.TEN, CustomerOrder.Status.PLACED);
-//        CustomerOrder order3 = new CustomerOrder("order3", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
-//        customerOrderRepository.saveAll(Arrays.asList(order1, order2, order3));
-//
-//    }
+    //    @Test
+    //    public void testHorizontalQuery() {
+    //        CustomerOrder order1 = new CustomerOrder(customer, "order1", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
+    //        CustomerOrder order2 = new CustomerOrder("order2", BigDecimal.TEN, CustomerOrder.Status.PLACED);
+    //        CustomerOrder order3 = new CustomerOrder("order3", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
+    //        customerOrderRepository.saveAll(Arrays.asList(order1, order2, order3));
+    //
+    //    }
 
 }

@@ -2,9 +2,7 @@ package com.tecacet.demo.envers.domain;
 
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,6 +14,12 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
@@ -27,7 +31,12 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Entity
 @Audited
-public class CustomerOrder extends AbstractPersistable<Long> {
+public class CustomerOrder {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    private long id;
 
     public enum Status {
         IN_PROGRESS, PLACED, SHIPPED, DELIVERED
@@ -46,10 +55,11 @@ public class CustomerOrder extends AbstractPersistable<Long> {
 
     @NotNull
     @Setter
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @NotEmpty
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderItem> items;
 
     public CustomerOrder(@NotNull Customer customer, @NotNull String description,
