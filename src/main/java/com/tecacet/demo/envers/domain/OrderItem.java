@@ -15,7 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -33,7 +33,7 @@ public class OrderItem  {
     @ManyToOne
     private CustomerOrder order;
 
-    @NotEmpty
+    @NotBlank
     private String itemIdentifier;
 
     @NotNull
@@ -45,7 +45,7 @@ public class OrderItem  {
     @Column(name = "number")
     private int count;
 
-    public OrderItem(@NotNull CustomerOrder order, @NotEmpty String itemIdentifier,
+    public OrderItem(@NotNull CustomerOrder order, @NotBlank String itemIdentifier,
             @NotNull @Min(0) BigDecimal price, @NotNull @Min(1) int count) {
         this.order = order;
         this.itemIdentifier = itemIdentifier;
