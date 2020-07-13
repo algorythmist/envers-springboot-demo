@@ -1,14 +1,19 @@
 package com.tecacet.demo.envers.domain;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
 import org.hibernate.envers.RelationTargetAuditMode;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +33,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @EqualsAndHashCode(callSuper = false)
+@ToString(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @Entity
 @Audited
@@ -48,12 +54,14 @@ public class CustomerOrder {
     private Customer customer;
 
     @NotNull
+    @ToString.Include
     private String description;
 
     @Min(0)
     private BigDecimal totalAmount;
 
     @NotNull
+    @ToString.Include
     @Setter
     @Enumerated(EnumType.STRING)
     private Status status;
@@ -61,6 +69,14 @@ public class CustomerOrder {
     @NotEmpty
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<OrderItem> items;
+
+    @CreationTimestamp
+    @NotAudited
+    private LocalDateTime created;
+
+    @UpdateTimestamp
+    @NotAudited
+    private LocalDateTime updated;
 
     public CustomerOrder(@NotNull Customer customer, @NotNull String description,
          @NotNull Status status) {

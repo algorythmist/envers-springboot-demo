@@ -12,6 +12,8 @@ CREATE TABLE customer_order (
     description VARCHAR(255) NOT NULL,
     status VARCHAR(50) NOT NULL,
     total_amount DECIMAL(35,22),
+    created TIMESTAMP NOT NULL,
+    updated TIMESTAMP NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT FK_order_customer_id FOREIGN KEY (customer_id) REFERENCES customer (id)
 );

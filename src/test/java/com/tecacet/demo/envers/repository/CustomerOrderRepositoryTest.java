@@ -77,13 +77,4 @@ class CustomerOrderRepositoryTest {
     }
 
 
-    //    @Test
-    //    public void testHorizontalQuery() {
-    //        CustomerOrder order1 = new CustomerOrder(customer, "order1", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
-    //        CustomerOrder order2 = new CustomerOrder("order2", BigDecimal.TEN, CustomerOrder.Status.PLACED);
-    //        CustomerOrder order3 = new CustomerOrder("order3", BigDecimal.TEN, CustomerOrder.Status.SHIPPED);
-    //        customerOrderRepository.saveAll(Arrays.asList(order1, order2, order3));
-    //
-    //    }
-
 }

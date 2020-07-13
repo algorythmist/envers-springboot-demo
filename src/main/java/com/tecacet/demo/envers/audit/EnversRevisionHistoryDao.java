@@ -1,5 +1,7 @@
 package com.tecacet.demo.envers.audit;
 
+import com.tecacet.demo.envers.domain.CustomerOrder;
+
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.query.AuditEntity;
@@ -30,15 +32,14 @@ public class EnversRevisionHistoryDao implements RevisionHistoryDao {
     }
 
     @Override
-    public AuditReader getAuditReader() {
-        return AuditReaderFactory.get(entityManager);
-    }
-
-    @Override
-    public <T> List<T> getAllRevisionsForEntity(Class<T> clazz, long id) {
+    public List<CustomerOrder> findRevisionsWhereStatusChanged(long id, CustomerOrder.Status status) {
         AuditReader auditReader = AuditReaderFactory.get(entityManager);
-        AuditQuery auditQuery = auditReader.createQuery().forRevisionsOfEntity(clazz, true, true);
-        auditQuery.add(AuditEntity.property("id").eq(id));
+
+        AuditQuery auditQuery = auditReader.createQuery()
+                .forRevisionsOfEntity(CustomerOrder.class, true, false)
+                .add(AuditEntity.id().eq(id))
+                .add(AuditEntity.property("status").eq(status));
+
         return auditQuery.getResultList();
     }
 

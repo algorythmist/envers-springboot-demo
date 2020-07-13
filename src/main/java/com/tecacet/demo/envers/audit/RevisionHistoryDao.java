@@ -1,5 +1,7 @@
 package com.tecacet.demo.envers.audit;
 
+import com.tecacet.demo.envers.domain.CustomerOrder;
+
 import org.hibernate.envers.AuditReader;
 
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.List;
  */
 public interface RevisionHistoryDao {
 
+    List<CustomerOrder> findRevisionsWhereStatusChanged(long id, CustomerOrder.Status status);
+
     /**
      * Delete the entire revision history for an object. This method is strictly
      * intended for tests. There should be no business scenario where this is
@@ -20,21 +24,4 @@ public interface RevisionHistoryDao {
      */
     void deleteAllRevisions(String tableName);
 
-    /**
-     * Get all revisions for an entity of a specific id. The oldest revision is
-     * the first element in the list
-     *
-     * @param type the entity type
-     * @param id   the entity id
-     * @return all revisions
-     */
-    <T> List<T> getAllRevisionsForEntity(Class<T> type, long id);
-
-    /**
-     * Get an envers audit reader to create any query supported by Envers The
-     * caller must use this within a transaction
-     *
-     * @return the audit reader
-     */
-    AuditReader getAuditReader();
 }

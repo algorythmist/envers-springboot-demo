@@ -1,3 +1,3 @@
 - README
 - populate user from security context
-- vertical queries
+- better horizontal queries
