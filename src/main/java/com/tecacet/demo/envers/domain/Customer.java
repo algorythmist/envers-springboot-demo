@@ -1,10 +1,9 @@
 package com.tecacet.demo.envers.domain;
 
-import org.springframework.data.jpa.domain.AbstractPersistable;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -29,4 +29,7 @@ public class Customer {
     private String username;
 
     private String email;
+
+    @CreationTimestamp
+    private LocalDateTime created;
 }

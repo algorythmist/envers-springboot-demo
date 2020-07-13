@@ -1,4 +1,3 @@
 - README
 - populate user from security context
 - vertical queries
-- Customer is immutable - add created timestamp

@@ -2,6 +2,7 @@ CREATE TABLE customer (
     id INT NOT NULL AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(50),
+    created TIMESTAMP NOT NULL,
     PRIMARY KEY (id)
 );
 
