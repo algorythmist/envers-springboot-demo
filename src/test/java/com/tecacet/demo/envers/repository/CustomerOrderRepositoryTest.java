@@ -62,7 +62,7 @@ class CustomerOrderRepositoryTest {
         RevisionMetadata<Integer> revisionMetadata = lastRevision.getMetadata();
         assertEquals(RevisionMetadata.RevisionType.UPDATE, revisionMetadata.getRevisionType());
         CustomRevision customRevision = revisionMetadata.getDelegate();
-        assertEquals("authorized", customRevision.getUsername());
+        assertEquals("ADMIN", customRevision.getUsername());
         LocalDate date = customRevision.getRevisionDateTime().toLocalDate();
         assertEquals(LocalDate.now(), date);
 
