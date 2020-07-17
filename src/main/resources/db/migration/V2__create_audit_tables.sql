@@ -1,8 +1,8 @@
 CREATE TABLE revision_info (
-    revision_id INT NOT NULL AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT,
     revision_timestamp TIMESTAMP NOT NUll,
     username VARCHAR(255) NOT NULL,
-    PRIMARY KEY (revision_id)
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE customer_order_history (
@@ -12,7 +12,8 @@ CREATE TABLE customer_order_history (
     status VARCHAR(50),
     total_amount DECIMAL(35,22),
     revision_id integer NOT NULL,
-    revision_type INT
+    revision_type INT,
+    CONSTRAINT FK_customer_order_revision FOREIGN KEY (revision_id) REFERENCES revision_info (id)
 );
 
 CREATE TABLE order_item_history (
@@ -22,6 +23,7 @@ CREATE TABLE order_item_history (
     price DECIMAL(35,22),
     number INT,
     revision_id integer NOT NULL,
-    revision_type INT
+    revision_type INT,
+    CONSTRAINT FK_customer_item_revision FOREIGN KEY (revision_id) REFERENCES revision_info (id)
 );
 

@@ -33,7 +33,6 @@ public class CustomRevision {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @RevisionNumber
-    @Column(name = "revision_id")
     private int id;
 
     @RevisionTimestamp
