@@ -1,6 +1,6 @@
 package com.tecacet.demo.envers.repository;
 
-import com.tecacet.demo.envers.domain.Customer;
+import com.tecacet.demo.envers.entity.Customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.tecacet.demo.envers.audit.CustomRevision;
 import com.tecacet.demo.envers.audit.RevisionHistoryDao;
-import com.tecacet.demo.envers.domain.Customer;
-import com.tecacet.demo.envers.domain.CustomerOrder;
+import com.tecacet.demo.envers.entity.Customer;
+import com.tecacet.demo.envers.entity.CustomerOrder;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.tecacet.demo.envers.domain;
+package com.tecacet.demo.envers.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

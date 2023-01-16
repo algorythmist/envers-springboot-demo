@@ -2,8 +2,8 @@ package com.tecacet.demo.envers.audit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.tecacet.demo.envers.domain.Customer;
-import com.tecacet.demo.envers.domain.CustomerOrder;
+import com.tecacet.demo.envers.entity.Customer;
+import com.tecacet.demo.envers.entity.CustomerOrder;
 import com.tecacet.demo.envers.repository.CustomerOrderRepository;
 import com.tecacet.demo.envers.repository.CustomerRepository;
 
@@ -13,10 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
-
-import javax.validation.constraints.NotNull;
 
 @SpringBootTest
 class EnversRevisionHistoryDaoTest {

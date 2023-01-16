@@ -1,6 +1,6 @@
 package com.tecacet.demo.envers.audit;
 
-import com.tecacet.demo.envers.domain.CustomerOrder;
+import com.tecacet.demo.envers.entity.CustomerOrder;
 
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
