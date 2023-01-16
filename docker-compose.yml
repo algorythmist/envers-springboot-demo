@@ -1,15 +1,18 @@
-version: '3.9'
-
+version: '3.3'
 services:
-
-  postgres:
-      container_name: 'postgres-envers'
-      hostname: postgres
-      image: postgres:alpine
-      ports: 
-        - "5432:5432"
-      environment:
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: postgres
-
+  database:
+    container_name: mysql-envers
+    image: mysql:8.0.16
+    volumes:
+      - "./data/mysql-dev2:/var/lib/mysql-envers-docker"
+    # restart: always
+    environment:
+      MYSQL_DATABASE: demo
+      MYSQL_ROOT_PASSWORD: Welcome123
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
 

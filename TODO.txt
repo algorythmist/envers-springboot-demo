@@ -1,3 +1,7 @@
 - README
+- fix security config for swagger ui
 - populate user from security context
 - better horizontal queries
+- complete orders API
+- create revisions API
+
