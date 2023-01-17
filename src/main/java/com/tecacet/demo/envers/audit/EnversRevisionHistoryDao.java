@@ -20,7 +20,6 @@ import javax.transaction.Transactional;
 @Transactional
 public class EnversRevisionHistoryDao implements RevisionHistoryDao {
 
-
     @Value("${spring.jpa.properties.org.hibernate.envers.audit_table_suffix:_aud}")
     private String auditSuffix;
 
@@ -32,12 +31,22 @@ public class EnversRevisionHistoryDao implements RevisionHistoryDao {
     }
 
     @Override
-    public List<CustomerOrder> findRevisionsWhereStatusChanged(long id, CustomerOrder.Status status) {
+    public List<CustomerOrder> findAllRevisions(long orderId) {
         AuditReader auditReader = AuditReaderFactory.get(entityManager);
 
         AuditQuery auditQuery = auditReader.createQuery()
                 .forRevisionsOfEntity(CustomerOrder.class, true, false)
-                .add(AuditEntity.id().eq(id))
+                .add(AuditEntity.id().eq(orderId));
+        return auditQuery.getResultList();
+    }
+
+    @Override
+    public List<CustomerOrder> findRevisionsWhereStatusChanged(long orderId, CustomerOrder.Status status) {
+        AuditReader auditReader = AuditReaderFactory.get(entityManager);
+
+        AuditQuery auditQuery = auditReader.createQuery()
+                .forRevisionsOfEntity(CustomerOrder.class, true, false)
+                .add(AuditEntity.id().eq(orderId))
                 .add(AuditEntity.property("status").eq(status));
 
         return auditQuery.getResultList();

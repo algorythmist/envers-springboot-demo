@@ -11,6 +11,8 @@ import java.util.List;
  */
 public interface RevisionHistoryDao {
 
+    List<CustomerOrder> findAllRevisions(long orderId);
+
     List<CustomerOrder> findRevisionsWhereStatusChanged(long id, CustomerOrder.Status status);
 
     /**
