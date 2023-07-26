@@ -1,5 +1,6 @@
-package com.tecacet.demo.envers.audit;
+package com.tecacet.demo.envers.service;
 
+import com.tecacet.demo.envers.entity.audit.CustomRevision;
 import org.hibernate.envers.RevisionListener;
 import org.springframework.security.core.context.SecurityContextHolder;
 

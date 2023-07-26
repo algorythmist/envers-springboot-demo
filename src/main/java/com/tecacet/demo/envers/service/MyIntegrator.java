@@ -1,4 +1,4 @@
-package com.tecacet.demo.envers.audit;
+package com.tecacet.demo.envers.service;
 
 import org.hibernate.boot.Metadata;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
