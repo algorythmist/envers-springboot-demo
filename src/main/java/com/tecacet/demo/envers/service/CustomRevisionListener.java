@@ -1,8 +1,8 @@
-package com.tecacet.demo.envers.audit;
+package com.tecacet.demo.envers.service;
 
-import com.tecacet.demo.envers.service.UserService;
-import lombok.RequiredArgsConstructor;
+import com.tecacet.demo.envers.entity.audit.CustomRevision;
 import org.hibernate.envers.RevisionListener;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,10 +12,10 @@ import org.springframework.stereotype.Component;
  * @author algorythmist
  */
 @Component
-@RequiredArgsConstructor
 public class CustomRevisionListener implements RevisionListener {
 
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
 
     @Override
     public void newRevision(Object object) {
