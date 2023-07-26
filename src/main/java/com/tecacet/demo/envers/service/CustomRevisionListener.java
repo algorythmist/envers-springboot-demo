@@ -2,8 +2,7 @@ package com.tecacet.demo.envers.service;
 
 import com.tecacet.demo.envers.entity.audit.CustomRevision;
 import org.hibernate.envers.RevisionListener;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 /**
  * When an audit revision is posted, this listener intervenes to populate
@@ -11,16 +10,21 @@ import org.springframework.stereotype.Component;
  *
  * @author algorythmist
  */
-@Component
 public class CustomRevisionListener implements RevisionListener {
 
-    @Autowired
-    private UserService userService;
 
     @Override
     public void newRevision(Object object) {
         CustomRevision revision = (CustomRevision) object;
-        revision.setUsername(userService.getCurrentUser());
+        revision.setUsername(getCurrentUser());
+    }
+
+    private String getCurrentUser() {
+        if (SecurityContextHolder.getContext() == null
+                || SecurityContextHolder.getContext().getAuthentication() == null) {
+            return "ADMIN";
+        }
+        return SecurityContextHolder.getContext().getAuthentication().getName();
     }
 
 }
