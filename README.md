@@ -33,9 +33,13 @@ spring.jpa.properties.org.hibernate.envers.revision_type_field_name = revision_t
 
 ### How to query revision history
 
-Horizontal/vertical
+- Horizontal/vertical
 
 https://thorben-janssen.com/hibernate-envers-query-data-audit-log/
+
+- Extend RevisionRepository
+
+See CustomOrderRepositoryTest
 
 ### Testing
 
@@ -64,6 +68,10 @@ has only one usage: When you have audited entity owning the relationship to not 
 
 https://thorben-janssen.com/conditional-auditing-hibernate-envers/
 
+### ValidityAuditStrategy
+
+- https://vladmihalcea.com/the-best-way-to-implement-an-audit-log-using-hibernate-envers/
+
 ## References
 
 - https://docs.jboss.org/envers/docs/
@@ -73,3 +81,5 @@ https://thorben-janssen.com/conditional-auditing-hibernate-envers/
 - https://thorben-janssen.com/conditional-auditing-hibernate-envers/
 
 - https://denuwanhimangahettiarachchi.medium.com/maintain-the-data-versioning-info-with-spring-data-envers-42b6dfc19e27
+
+- https://vladmihalcea.com/the-best-way-to-implement-an-audit-log-using-hibernate-envers/
