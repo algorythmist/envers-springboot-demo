@@ -1,4 +1,4 @@
-package com.tecacet.demo.envers.audit;
+package com.tecacet.demo.envers.repository.audit;
 
 import com.tecacet.demo.envers.entity.CustomerOrder;
 

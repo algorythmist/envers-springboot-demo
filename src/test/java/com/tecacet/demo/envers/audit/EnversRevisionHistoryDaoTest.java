@@ -7,6 +7,7 @@ import com.tecacet.demo.envers.entity.CustomerOrder;
 import com.tecacet.demo.envers.repository.CustomerOrderRepository;
 import com.tecacet.demo.envers.repository.CustomerRepository;
 
+import com.tecacet.demo.envers.repository.audit.EnversRevisionHistoryDao;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -3,8 +3,8 @@ package com.tecacet.demo.envers.repository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.tecacet.demo.envers.audit.CustomRevision;
-import com.tecacet.demo.envers.audit.RevisionHistoryDao;
+import com.tecacet.demo.envers.entity.audit.CustomRevision;
+import com.tecacet.demo.envers.repository.audit.RevisionHistoryDao;
 import com.tecacet.demo.envers.entity.Customer;
 import com.tecacet.demo.envers.entity.CustomerOrder;
 

@@ -1,6 +1,6 @@
 package com.tecacet.demo.envers.controller;
 
-import com.tecacet.demo.envers.audit.RevisionHistoryDao;
+import com.tecacet.demo.envers.repository.audit.RevisionHistoryDao;
 import com.tecacet.demo.envers.dto.OrderDto;
 import com.tecacet.demo.envers.entity.CustomerOrder;
 

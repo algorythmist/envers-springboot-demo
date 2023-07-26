@@ -1,5 +1,6 @@
-package com.tecacet.demo.envers.audit;
+package com.tecacet.demo.envers.entity.audit;
 
+import com.tecacet.demo.envers.service.CustomRevisionListener;
 import org.hibernate.envers.RevisionEntity;
 import org.hibernate.envers.RevisionNumber;
 import org.hibernate.envers.RevisionTimestamp;
